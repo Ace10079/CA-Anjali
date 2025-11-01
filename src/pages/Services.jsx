@@ -1,66 +1,80 @@
-import { Link } from "react-router-dom";
-
-const serviceCategories = [
-  {
-    id: "registration",
-    title: "Company Registration",
-    description:
-      "Start your business legally with hassle-free company and LLP registration.",
-    image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    id: "licenses",
-    title: "Licenses & Certificates",
-    description:
-      "Apply for mandatory business licenses and professional certifications easily.",
-    image:
-      "https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    id: "compliance",
-    title: "Company Compliance",
-    description:
-      "Ensure your company stays compliant with legal filings and annual returns.",
-    image:
-      "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=1600&q=80",
-  },
-];
+// src/components/Services.jsx
+import { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Services() {
+  const services = [
+    { title: "CA Services", image: "/CA_services.jpg" },
+    { title: "Private Lender Services", image: "/Private_lenders.jpg" },
+    { title: "Bank / NBFC Services", image: "/NBFC.jpg" },
+    { title: "Legal Services", image: "/legal-servies.jpg" },
+    { title: "Investment Services", image: "/investment-services.jpg" },
+  ];
+
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const scrollAmount =
+      direction === "left"
+        ? -container.offsetWidth / 1.2
+        : container.offsetWidth / 1.2;
+    container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  };
+
   return (
-    <section className="px-4 sm:px-6 lg:px-12 py-12 bg-white">
-      <h1 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-10">
+    <section className="relative px-4 sm:px-6 lg:px-12 py-14 bg-gradient-to-b from-gray-50 to-white">
+      {/* Section Title */}
+      <h1 className="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-12">
         Our Services
       </h1>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {serviceCategories.map((service) => (
+      {/* Scrollable Cards */}
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-auto scrollbar-hide scroll-smooth space-x-6 pb-4"
+      >
+        {services.map((service, index) => (
           <div
-            key={service.id}
-            className="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden"
+            key={index}
+            className="min-w-[260px] sm:min-w-[320px] bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex-shrink-0 overflow-hidden"
           >
-            <img
-              src={service.image}
-              alt={service.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-6">
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+            <div className="relative group">
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+            <div className="p-5 text-center">
+              <h2 className="text-lg sm:text-xl font-semibold text-blue-700 mb-2">
                 {service.title}
               </h2>
-              <p className="text-gray-600 text-sm mb-4">
-                {service.description}
-              </p>
-              <Link
-                to={`/services/${service.id}`}
-                className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-              >
+              <button className="mt-2 px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition">
                 Explore Now
-              </Link>
+              </button>
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Navigation Buttons Below */}
+      <div className="flex justify-center mt-8 space-x-6">
+        <button
+          onClick={() => scroll("left")}
+          className="bg-blue-600 text-white rounded-full p-3 hover:bg-blue-700 transition shadow-md"
+        >
+          <ChevronLeft size={24} />
+        </button>
+        <button
+          onClick={() => scroll("right")}
+          className="bg-blue-600 text-white rounded-full p-3 hover:bg-blue-700 transition shadow-md"
+        >
+          <ChevronRight size={24} />
+        </button>
       </div>
     </section>
   );
