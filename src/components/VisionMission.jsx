@@ -5,7 +5,7 @@ export default function VisionMission() {
   return (
     <section className="py-16 bg-white text-gray-800">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-12 text-blue-700">
+        <h2 className="text-4xl font-bold text-center mb-12 text-[#7DB44B]">
           Our Vision & Mission
         </h2>
 
@@ -18,7 +18,7 @@ export default function VisionMission() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-semibold text-blue-600">Our Vision</h3>
+            <h3 className="text-2xl font-semibold text-[#7DB44B]">Our Vision</h3>
             <p className="text-gray-600 leading-relaxed">
               To be a trusted partner for businesses and individuals by
               delivering expert financial, tax, and compliance services with
@@ -71,7 +71,7 @@ export default function VisionMission() {
             viewport={{ once: true }}
             className="space-y-6 order-1 md:order-2"
           >
-            <h3 className="text-2xl font-semibold text-blue-600">Our Mission</h3>
+            <h3 className="text-2xl font-semibold text-[#7DB44B]">Our Mission</h3>
             <p className="text-gray-600 leading-relaxed">
               To empower our clients with transparent, ethical, and value-driven
               financial guidance. We aim to ensure seamless compliance with

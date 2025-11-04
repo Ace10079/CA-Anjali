@@ -45,7 +45,7 @@ export default function Industries() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold text-blue-700 text-center mb-4"
+          className="text-4xl font-bold text-[#7DB44B] text-center mb-4"
         >
           Industries We’ve Worked With
         </motion.h2>
@@ -71,10 +71,10 @@ export default function Industries() {
               viewport={{ once: true }}
               className="group bg-white shadow-md hover:shadow-xl rounded-xl p-6 flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2"
             >
-              <div className="text-blue-600 group-hover:text-blue-700 transition-colors mb-3">
+              <div className="text-[#7DB44B] group-hover:text-[#7DB44B] transition-colors mb-3">
                 {item.icon}
               </div>
-              <h3 className="text-center text-sm sm:text-base font-medium text-gray-700 group-hover:text-blue-700 transition-colors">
+              <h3 className="text-center text-sm sm:text-base font-medium text-gray-700 group-hover:text-[#7DB44B] transition-colors">
                 {item.name}
               </h3>
             </motion.div>

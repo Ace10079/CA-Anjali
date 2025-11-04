@@ -57,7 +57,7 @@ export default function Testimonials() {
   return (
     <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 text-center mb-12">
-        <h2 className="text-4xl font-bold text-blue-700 mb-4">
+        <h2 className="text-4xl font-bold text-[#7DB44B] mb-4">
           What Our Clients Say
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">

@@ -1,48 +1,58 @@
 // src/components/Carousel.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
   {
     id: 1,
     image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
-    title: "Discover the World",
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1600&q=80",
+    title: "Empowering Business Growth",
     description:
-      "Explore breathtaking destinations and unique experiences around the globe.",
+      "We provide end-to-end Chartered Accountancy, Legal, and Financial services — helping clients achieve stability, growth, and long-term success.",
   },
   {
     id: 2,
     image:
-      "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1600&q=80",
-    title: "Adventure Awaits",
+      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80",
+    title: "Trusted Advisors, Professional Excellence",
     description:
-      "Find your next adventure — from mountains to beaches and everything in between.",
+      "With a team of experienced professionals, we ensure ethical practices, compliance, and strategic guidance across every business domain.",
   },
   {
     id: 3,
     image:
-      "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1600&q=80",
-    title: "Luxury Escapes",
+      "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1600&q=80",
+    title: "Your Partner in Finance & Law",
     description:
-      "Indulge yourself with curated luxury stays and experiences tailored for you.",
+      "From Income Tax, GST, and Audit to Legal and Corporate Advisory — we deliver expert solutions tailored to your business needs.",
   },
 ];
 
 export default function Carousel() {
   const [current, setCurrent] = useState(0);
+  const autoplayRef = useRef(null);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
+    autoplayRef.current = setInterval(nextSlide, 5000);
+    return () => clearInterval(autoplayRef.current);
   }, []);
+
+  const handleMouseEnter = () => clearInterval(autoplayRef.current);
+  const handleMouseLeave = () => {
+    clearInterval(autoplayRef.current);
+    autoplayRef.current = setInterval(nextSlide, 5000);
+  };
 
   return (
     <div
-      className="relative w-screen h-[80vh] sm:h-[70vh] overflow-hidden bg-black"
-      style={{ overflowX: "hidden" }}
+      className="relative w-full h-[85vh] sm:h-[75vh] overflow-hidden bg-black"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      role="region"
+      aria-label="Hero carousel"
     >
       <AnimatePresence>
         {slides.map(
@@ -57,25 +67,45 @@ export default function Carousel() {
                 exit={{ opacity: 0, scale: 1.05 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
               >
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40"></div>
+                {/* overlay */}
+                <div className="absolute inset-0 bg-black/50"></div>
 
-                {/* Card Content */}
+                {/* Text Card */}
                 <motion.div
-                  className="absolute top-1/2 left-4 sm:left-10 md:left-20 -translate-y-1/2 bg-white/90 backdrop-blur-md p-5 sm:p-8 rounded-xl shadow-lg max-w-[90%] sm:max-w-md"
-                  initial={{ x: -80, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="
+                    absolute z-10 
+                    left-1/2 transform -translate-x-1/2 top-6 
+                    w-[92%] sm:w-auto sm:left-12 sm:translate-x-0 
+                    sm:top-1/2 sm:-translate-y-1/2
+                  "
+                  initial={{ y: -40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.15 }}
                 >
-                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">
-                    {slide.title}
-                  </h2>
-                  <p className="text-gray-600 mb-5 text-sm sm:text-base">
-                    {slide.description}
-                  </p>
-                  <button className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                    Explore
-                  </button>
+                  <div
+                    className="
+                      relative p-6 sm:p-8 rounded-2xl shadow-2xl
+                      bg-gradient-to-br from-white/30 via-white/20 to-white/10
+                      backdrop-blur-lg border border-white/30
+                      text-center sm:text-left
+                      max-w-lg mx-auto sm:mx-0
+                    "
+                  >
+                    {/* Decorative Glow */}
+                    <div className="absolute inset-0 rounded-2xl bg-white/10 blur-md"></div>
+
+                    {/* Text */}
+                    <div className="relative z-10">
+                      <h2 className="text-2xl sm:text-4xl font-bold text-white drop-shadow-lg mb-3">
+                        {slide.title}
+                      </h2>
+                      <p className="text-gray-100 text-sm sm:text-base leading-relaxed">
+                        {slide.description}
+                      </p>
+
+                    
+                    </div>
+                  </div>
                 </motion.div>
               </motion.div>
             )
@@ -83,17 +113,18 @@ export default function Carousel() {
       </AnimatePresence>
 
       {/* Dots Navigation */}
-      <div className="absolute bottom-5 w-full flex justify-center gap-3">
+      <div className="absolute bottom-4 w-full flex justify-center gap-3 px-4">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
+            aria-label={`Go to slide ${index + 1}`}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === current
-                ? "bg-white scale-125"
+                ? "bg-[#7DB44B] scale-125 shadow-md"
                 : "bg-white/50 hover:bg-white/80"
             }`}
-          ></button>
+          />
         ))}
       </div>
     </div>

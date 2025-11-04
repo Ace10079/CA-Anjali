@@ -6,28 +6,28 @@ import { Users, Briefcase, Award, Calendar } from "lucide-react";
 const stats = [
   {
     id: 1,
-    icon: <Users className="w-10 h-10 text-blue-600" />,
+    icon: <Users className="w-10 h-10 text-[#7DB44B]" />,
     title: "Clients Served",
     number: 700,
     suffix: "+",
   },
   {
     id: 2,
-    icon: <Briefcase className="w-10 h-10 text-blue-600" />,
+    icon: <Briefcase className="w-10 h-10 text-[#7DB44B]" />,
     title: "Services Offered",
     number: 100,
     suffix: "+",
   },
   {
     id: 3,
-    icon: <Award className="w-10 h-10 text-blue-600" />,
+    icon: <Award className="w-10 h-10 text-[#7DB44B]" />,
     title: "Qualified Team",
     number: 100,
     suffix: "+",
   },
   {
     id: 4,
-    icon: <Calendar className="w-10 h-10 text-blue-600" />,
+    icon: <Calendar className="w-10 h-10 text-[#7DB44B]" />,
     title: "Years of Expertise",
     number: 9,
     suffix: "+",
@@ -43,7 +43,7 @@ export default function GrowthStats() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold text-blue-700 mb-4"
+          className="text-4xl font-bold text-[#7DB44B] mb-4"
         >
           We Are One of the Fastest Growing CA Firms
         </motion.h2>
@@ -71,7 +71,7 @@ export default function GrowthStats() {
               className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center justify-center hover:shadow-xl transition"
             >
               <div className="mb-3">{stat.icon}</div>
-              <h3 className="text-3xl font-bold text-blue-700 mb-1">
+              <h3 className="text-3xl font-bold text-[#7DB44B] mb-1">
                 <CountUp
                   start={0}
                   end={stat.number}
