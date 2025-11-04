@@ -8,7 +8,7 @@ import Industries from "./components/Industries";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import WelcomeSection from "./components/WelcomeSection";
-import ScrollToTop from "./components/ScrollToTop";  // ✅ added this
+import ScrollToTop from "./components/ScrollToTop"; // ✅ import here
 
 // Individual Service Pages
 import CAService from "./pages/CAService";
@@ -24,9 +24,10 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="pt-16">
-        <Routes>
-          <ScrollToTop />  {/* ✅ ensures scroll to top on route change */}
+        {/* ✅ ScrollToTop should be outside Routes */}
+        <ScrollToTop /> 
 
+        <Routes>
           {/* 🏠 Home Page */}
           <Route
             path="/"

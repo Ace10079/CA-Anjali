@@ -156,12 +156,7 @@ export default function CAService() {
 
         {/* Registration */}
         <motion.div {...fadeIn(0.5)}>
-          <h3 className="text-2xl font-semibold text-[#7DB44B] mb-4">
-            Registration
-          </h3>
-          <ul className="list-disc pl-6 space-y-2 text-gray-700">
-            <li>Company registration (Private Limited / Public Limited)</li>
-          </ul>
+         
         </motion.div>
                 {/* Company Registrations */}
                 <motion.div {...fadeIn(0.6)}>
