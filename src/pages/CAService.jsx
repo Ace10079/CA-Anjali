@@ -163,6 +163,83 @@ export default function CAService() {
             <li>Company registration (Private Limited / Public Limited)</li>
           </ul>
         </motion.div>
+                {/* Company Registrations */}
+                <motion.div {...fadeIn(0.6)}>
+          <h3 className="text-2xl font-semibold text-[#7DB44B] mb-4">
+            Company & Business Registrations
+          </h3>
+          <ul className="list-disc pl-6 space-y-2 text-gray-700">
+            <li>
+              <strong>Private Limited Company Registration:</strong> Limited liability, shared decision-making, and easy conflict resolution among directors.
+            </li>
+            <li>
+              <strong>Public Limited Company Registration:</strong> Ease in transfer of shareholding, enhanced transparency, credibility, and limited liability.
+            </li>
+            <li>
+              <strong>Limited Liability Partnership (LLP):</strong> Flexible partnership structure, limited liability protection, and no cap on partners (2–200).
+            </li>
+            <li>
+              <strong>Shop & Establishment Registration:</strong> Mandatory for shops and service establishments; covers offices, warehouses, and trade premises.
+            </li>
+          </ul>
+        </motion.div>
+
+        {/* Tax & Compliance Services */}
+        <motion.div {...fadeIn(0.7)}>
+          <h3 className="text-2xl font-semibold text-[#7DB44B] mb-4">
+            Tax & Compliance Services
+          </h3>
+          <ul className="list-disc pl-6 space-y-2 text-gray-700">
+            <li><strong>GST Registration & Return Filing:</strong> Hassle-free GST setup, return filing, and compliance assistance.</li>
+            <li><strong>TAN & PAN Services:</strong> Application and updates for Tax Deduction and Permanent Account Numbers.</li>
+            <li><strong>Professional Tax Registration:</strong> State-level tax compliance for professionals and businesses.</li>
+            <li><strong>Income Tax Return Filing:</strong> Expert filing support for individuals and organizations.</li>
+            <li><strong>TDS Return Filing:</strong> Periodic submission and compliance for tax deducted at source.</li>
+          </ul>
+        </motion.div>
+
+        {/* Annual Filings & Compliance */}
+        <motion.div {...fadeIn(0.8)}>
+          <h3 className="text-2xl font-semibold text-[#7DB44B] mb-4">
+            Annual Filings & Compliance
+          </h3>
+          <ul className="list-disc pl-6 space-y-2 text-gray-700">
+            <li><strong>LLP Annual Filing:</strong> Filing and documentation for partnerships to maintain compliance.</li>
+            <li><strong>Company Annual Filing:</strong> Annual return, director reports, and ROC submissions.</li>
+            <li><strong>DIR-3 KYC Filing:</strong> Mandatory yearly KYC for company directors.</li>
+          </ul>
+        </motion.div>
+
+        {/* Other Registrations */}
+        <motion.div {...fadeIn(0.9)}>
+          <h3 className="text-2xl font-semibold text-[#7DB44B] mb-4">
+            Other Key Registrations
+          </h3>
+          <ul className="list-disc pl-6 space-y-2 text-gray-700">
+            <li>MSME / SSI Registration</li>
+            <li>Nidhi Company Registration</li>
+            <li>Barcode Registration</li>
+            <li>ESI & PF Registration</li>
+            <li>FSSAI Food License</li>
+            <li>IEC (Import Export Code)</li>
+            <li>RERA Registration</li>
+            <li>APEDA Registration</li>
+          </ul>
+        </motion.div>
+
+        {/* Certification & Legal Support */}
+        <motion.div {...fadeIn(1)}>
+          <h3 className="text-2xl font-semibold text-[#7DB44B] mb-4">
+            Certification & Legal Support
+          </h3>
+          <ul className="list-disc pl-6 space-y-2 text-gray-700">
+            <li>Change of Registered Office Address</li>
+            <li>Class 3 Digital Signature (DSC)</li>
+            <li>ISO Certification</li>
+            <li>Trademark, Copyright & Patent Registration</li>
+          </ul>
+        </motion.div>
+
       </section>
 
       <Footer />

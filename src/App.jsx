@@ -8,6 +8,7 @@ import Industries from "./components/Industries";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import WelcomeSection from "./components/WelcomeSection";
+import ScrollToTop from "./components/ScrollToTop";  // ✅ added this
 
 // Individual Service Pages
 import CAService from "./pages/CAService";
@@ -18,13 +19,14 @@ import InvestmentService from "./pages/InvestmentService";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
-
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="pt-16">
         <Routes>
+          <ScrollToTop />  {/* ✅ ensures scroll to top on route change */}
+
           {/* 🏠 Home Page */}
           <Route
             path="/"
@@ -52,10 +54,8 @@ function App() {
           <Route path="/services/legal" element={<LegalService />} />
           <Route path="/services/investment" element={<InvestmentService />} />
 
-          {/* 🧱 Optional: Fallback or 404 Page */}
-          {/* <Route path="*" element={<NotFound />} /> */}
           <Route path="/about" element={<About />} />
-<Route path="/contact" element={<Contact/>} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
     </div>
