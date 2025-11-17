@@ -1,5 +1,6 @@
 // src/pages/LegalService.jsx
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Footer from "../components/Footer";
 
 export default function LegalService() {
@@ -11,15 +12,65 @@ export default function LegalService() {
   });
 
   const legalAreas = [
-    { title: "Property Litigations", img: "/L1.JPG" },
-    { title: "Criminal Litigations", img: "/L2.JPG" },
-    { title: "Company Litigation", img: "/L3.JPG" },
-    { title: "Information Technology Laws", img: "/L4.JPG" },
-    { title: "Money Recovery Litigation", img: "/L5.JPG" },
-    { title: "Registration Of Documents", img: "/L6.JPG" },
-    { title: "Real Estate & Property Transfer", img: "/L7.JPG" },
-    { title: "Intellectual Property Rights (IPR)", img: "/L8.JPG" },
+    { 
+      title: "Property Litigations", 
+      img: "/L1.JPG",
+      description: "Our legal experts are highly experienced in handling property disputes, including issues related to ownership, tenancy, and transfer of property. We provide comprehensive support to resolve propertyrelated conflicts efficiently",
+      
+    },
+    { 
+      title: "Criminal Litigations", 
+      img: "/L2.JPG",
+      description: " We offer expert representation in criminal cases, providing the highest level of defense or prosecution services to protect your rights and interests, no matter the complexity of the case.",
+    },
+    { 
+      title: "Company Litigation", 
+      img: "/L3.JPG",
+      description: "Whether you're dealing with shareholder disputes, corporate governance issues, or any other corporate matter, we provide professional litigation services to resolve business-related legal challenges",
+      
+    },
+    { 
+      title: "Information Technology Laws", 
+      img: "/L4.JPG",
+      description: "Legal expertise in cyber laws, data protection, digital contracts, and IT compliance matters.",
+      features: ["Cyber Law Compliance", "Data Protection", "Digital Contracts", "IT Act Advisory"]
+    },
+    { 
+      title: "Money Recovery Litigation", 
+      img: "/L5.JPG",
+      description: "Effective debt recovery solutions through legal channels including suits and arbitration.",
+      features: ["Debt Recovery Suits", "Arbitration", "Loan Recovery", "Payment Disputes"]
+    },
+    { 
+      title: "Registration Of Documents", 
+      img: "/L6.JPG",
+      description: "We provide expert services for the registration of various legal documents, ensuring all paperwork is handled professionally and in compliance with applicable laws",
+    },
+    { 
+      title: "Real Estate & Property Transfer", 
+      img: "/L7.JPG",
+      description: "We offer comprehensive services for real estate transactions,including the transfer of property, legal documentation, and ensuring all processes are conducted smoothly and in line with the law",
+    },
+    { 
+      title: "Intellectual Property Rights (IPR)", 
+      img: "/L8.JPG",
+      description: "Our firm provides legal services related to intellectual property rights, including patents, trademarks, copyrights, and more, protecting your creative and business assets",
+    },
   ];
+
+  const [flippedCards, setFlippedCards] = useState({});
+
+  const toggleFlip = (index) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
+  const cardVariants = {
+    initial: { rotateY: 0 },
+    flipped: { rotateY: 180 }
+  };
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white text-gray-800">
@@ -74,24 +125,85 @@ export default function LegalService() {
         </motion.h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {legalAreas.map((area, i) => (
+          {legalAreas.map((area, index) => (
             <motion.div
-              key={i}
-              {...fadeIn(0.05 * i)}
-              className="bg-white rounded-2xl shadow hover:shadow-2xl transition overflow-hidden"
+              key={index}
+              {...fadeIn(0.05 * index)}
+              className="relative h-80 cursor-pointer"
+              onClick={() => toggleFlip(index)}
             >
-              <div className="h-48 bg-gray-100">
-                <img
-                  src={area.img}
-                  alt={area.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-5 text-center">
-                <h4 className="text-lg font-semibold text-[#7DB44B]">
-                  {area.title}
-                </h4>
-              </div>
+              {/* Flip Card Container */}
+              <motion.div
+                className="relative w-full h-full"
+                variants={cardVariants}
+                initial="initial"
+                animate={flippedCards[index] ? "flipped" : "initial"}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Front of Card */}
+                <div 
+                  className="absolute inset-0 w-full h-full bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  style={{ backfaceVisibility: "hidden" }}
+                >
+                  <div className="h-48 bg-gray-100">
+                    <img
+                      src={area.img}
+                      alt={area.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-5 text-center">
+                    <h4 className="text-lg font-semibold text-[#7DB44B] mb-3">
+                      {area.title}
+                    </h4>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-4 py-2 bg-[#7DB44B] text-white text-sm font-medium rounded-lg hover:bg-[#6a9a3f] transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFlip(index);
+                      }}
+                    >
+                      Know More
+                    </motion.button>
+                  </div>
+                </div>
+
+                {/* Back of Card (Details) */}
+                <div 
+                  className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#7DB44B] to-[#5a8c29] text-white rounded-2xl shadow-lg p-6 overflow-y-auto"
+                  style={{ 
+                    backfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)" 
+                  }}
+                >
+                  <div className="flex flex-col h-full">
+                    <h4 className="text-xl font-bold mb-3 text-white">
+                      {area.title}
+                    </h4>
+                    
+                    <p className="text-white/90 text-sm mb-4 leading-relaxed">
+                      {area.description}
+                    </p>
+
+                   
+
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="mt-4 px-4 py-2 bg-white text-[#7DB44B] text-sm font-medium rounded-lg hover:bg-gray-100 transition-colors w-full"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFlip(index);
+                      }}
+                    >
+                      Back to Overview
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -134,13 +246,13 @@ export default function LegalService() {
           <div className="flex justify-center gap-4 flex-wrap">
             <a
               href="/contact"
-              className="px-6 py-2 rounded-md bg-white text-[#0f5132] font-semibold"
+              className="px-6 py-2 rounded-md bg-white text-[#0f5132] font-semibold hover:bg-gray-100 transition-colors"
             >
               Contact Us
             </a>
             <a
               href="tel:+919876543210"
-              className="px-6 py-2 rounded-md border border-white/30"
+              className="px-6 py-2 rounded-md border border-white/30 hover:bg-white/10 transition-colors"
             >
               Call Now
             </a>

@@ -7,7 +7,7 @@ import GrowthStats from "./components/GrowthStats";
 import Industries from "./components/Industries";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
-import WelcomeSection from "./components/WelcomeSection";
+
 import ScrollToTop from "./components/ScrollToTop"; // ✅ import here
 
 // Individual Service Pages
@@ -18,6 +18,7 @@ import LegalService from "./pages/LegalService";
 import InvestmentService from "./pages/InvestmentService";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import WelcomeSection from "./pages/WelcomeSection";
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
             element={
               <>
                 <Carousel />
-                <WelcomeSection />
+              
                 <Services />
                 <VisionMission />
                 <GrowthStats />
@@ -54,6 +55,7 @@ function App() {
           <Route path="/services/nbfc" element={<NBFCService />} />
           <Route path="/services/legal" element={<LegalService />} />
           <Route path="/services/investment" element={<InvestmentService />} />
+          <Route path="/Welcome" element ={<WelcomeSection/>}/>
 
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
