@@ -38,7 +38,7 @@ export default function VisionMission() {
             viewport={{ once: true }}
           >
             <img
-              src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=800&q=80"
+              src="./V1.JPG"
               alt="Our Vision"
               className="rounded-2xl shadow-lg w-full h-[300px] object-cover"
             />
@@ -58,7 +58,7 @@ export default function VisionMission() {
             className="order-2 md:order-1"
           >
             <img
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
+              src="./M1.JPG"
               alt="Our Mission"
               className="rounded-2xl shadow-lg w-full h-[300px] object-cover"
             />

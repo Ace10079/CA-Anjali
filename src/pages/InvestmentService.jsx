@@ -13,39 +13,39 @@ export default function InvestmentService() {
     {
       title: "Business Investment Planning",
       desc: "We help entrepreneurs and enterprises plan and execute profitable investments for sustainable business growth.",
-      img: "/invest/business-investment.jpg",
+      img: "/I1.JPG",
     },
     {
       title: "Private Equity & Venture Funding",
       desc: "Connecting clients with trusted investors and partners for equity-based funding and expansion opportunities.",
-      img: "/invest/private-equity.jpg",
+      img: "/I2.JPG",
     },
     {
       title: "Portfolio Management",
       desc: "Customized investment portfolios balancing risk and returns to achieve your financial objectives.",
-      img: "/invest/portfolio.jpg",
+      img: "/I3.JPG",
     },
     {
       title: "Wealth Advisory & Financial Planning",
       desc: "Comprehensive financial guidance on wealth creation, savings, tax benefits, and asset management.",
-      img: "/invest/wealth.jpg",
+      img: "/I4.JPG",
     },
     {
       title: "Joint Ventures & Partnerships",
       desc: "End-to-end assistance in structuring, negotiating, and executing joint ventures and partnerships.",
-      img: "/invest/jv.jpg",
+      img: "/I5.JPG",
     },
     {
       title: "Government & Industrial Schemes",
       desc: "Helping clients leverage government subsidies and schemes to support new projects and expansions.",
-      img: "/invest/government.jpg",
+      img: "/I6.JPG",
     },
   ];
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white text-gray-800">
       {/* Hero */}
-      <section className="relative h-72 sm:h-96 flex items-center justify-center bg-[url('/investment-bg.jpg')] bg-cover bg-center">
+      <section className="relative h-72 sm:h-96 flex items-center justify-center bg-[url('/investment-services.jpg')] bg-cover bg-center">
         <div className="absolute inset-0 bg-black/50" />
         <motion.div {...fadeIn()} className="relative z-10 text-center px-6">
           <h1 className="text-3xl sm:text-4xl font-bold text-white">

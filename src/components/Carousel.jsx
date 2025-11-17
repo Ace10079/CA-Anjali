@@ -1,31 +1,22 @@
-// src/components/Carousel.jsx
+// Updated Carousel.jsx with titles only - clean design
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
   {
     id: 1,
-    image:
-      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1600&q=80",
+    image: "/C1.JPG",
     title: "Empowering Business Growth",
-    description:
-      "We provide end-to-end Chartered Accountancy, Legal, and Financial services — helping clients achieve stability, growth, and long-term success.",
   },
   {
     id: 2,
-    image:
-      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80",
+    image: "/C2.JPG",
     title: "Trusted Advisors, Professional Excellence",
-    description:
-      "With a team of experienced professionals, we ensure ethical practices, compliance, and strategic guidance across every business domain.",
   },
   {
     id: 3,
-    image:
-      "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1600&q=80",
+    image: "/C3.JPG",
     title: "Your Partner in Finance & Law",
-    description:
-      "From Income Tax, GST, and Audit to Legal and Corporate Advisory — we deliver expert solutions tailored to your business needs.",
   },
 ];
 
@@ -34,77 +25,108 @@ export default function Carousel() {
   const autoplayRef = useRef(null);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
+  // Auto-play with smoother transitions
   useEffect(() => {
-    autoplayRef.current = setInterval(nextSlide, 5000);
-    return () => clearInterval(autoplayRef.current);
+    autoplayRef.current = setInterval(nextSlide, 4000);
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+    };
   }, []);
 
-  const handleMouseEnter = () => clearInterval(autoplayRef.current);
+  const handleMouseEnter = () => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
+  };
+
   const handleMouseLeave = () => {
-    clearInterval(autoplayRef.current);
-    autoplayRef.current = setInterval(nextSlide, 5000);
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
+    autoplayRef.current = setInterval(nextSlide, 4000);
+  };
+
+  // Handle touch events for mobile
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
   };
 
   return (
     <div
-      className="relative w-full h-[85vh] sm:h-[75vh] overflow-hidden bg-black"
+      className="relative w-full h-[56.25vw] min-h-[400px] max-h-[90vh] overflow-hidden bg-black"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      role="region"
-      aria-label="Hero carousel"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {slides.map(
           (slide, index) =>
             index === current && (
               <motion.div
                 key={slide.id}
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${slide.image})` }}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.05 }}
+                className="absolute inset-0"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
               >
-                {/* overlay */}
-                <div className="absolute inset-0 bg-black/50"></div>
+                {/* Full Image with laptop landscape ratio (16:9) */}
+                <img
+                  src={slide.image}
+                  alt="carousel slide"
+                  className="w-full h-full object-cover object-center"
+                />
 
-                {/* Text Card */}
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/40"></div>
+
+                {/* Title Only - Centered and Stylish */}
                 <motion.div
-                  className="
-                    absolute z-10 
-                    left-1/2 transform -translate-x-1/2 top-6 
-                    w-[92%] sm:w-auto sm:left-12 sm:translate-x-0 
-                    sm:top-1/2 sm:-translate-y-1/2
-                  "
-                  initial={{ y: -40, opacity: 0 }}
+                  className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 w-[90%] max-w-4xl text-center"
+                  initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.15 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
                 >
-                  <div
-                    className="
-                      relative p-6 sm:p-8 rounded-2xl shadow-2xl
-                      bg-gradient-to-br from-white/30 via-white/20 to-white/10
-                      backdrop-blur-lg border border-white/30
-                      text-center sm:text-left
-                      max-w-lg mx-auto sm:mx-0
-                    "
-                  >
-                    {/* Decorative Glow */}
-                    <div className="absolute inset-0 rounded-2xl bg-white/10 blur-md"></div>
-
-                    {/* Text */}
-                    <div className="relative z-10">
-                      <h2 className="text-2xl sm:text-4xl font-bold text-white drop-shadow-lg mb-3">
-                        {slide.title}
-                      </h2>
-                      <p className="text-gray-100 text-sm sm:text-base leading-relaxed">
-                        {slide.description}
-                      </p>
-
+                  <div className="relative">
+                    {/* Main Title */}
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-2xl leading-tight">
+                      {slide.title}
+                    </h2>
                     
-                    </div>
+                    {/* Decorative Line */}
+                    <motion.div 
+                      className="w-20 h-1 bg-[#7DB44B] mx-auto mt-6"
+                      initial={{ width: 0 }}
+                      animate={{ width: 80 }}
+                      transition={{ duration: 0.8, delay: 0.5 }}
+                    />
                   </div>
                 </motion.div>
               </motion.div>
@@ -112,18 +134,39 @@ export default function Carousel() {
         )}
       </AnimatePresence>
 
-      {/* Dots Navigation */}
-      <div className="absolute bottom-4 w-full flex justify-center gap-3 px-4">
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white p-3 sm:p-4 rounded-full transition-all duration-300 backdrop-blur-sm hover:scale-110"
+        aria-label="Previous slide"
+      >
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button
+        onClick={nextSlide}
+        className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white p-3 sm:p-4 rounded-full transition-all duration-300 backdrop-blur-sm hover:scale-110"
+        aria-label="Next slide"
+      >
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Navigation Dots */}
+      <div className="absolute bottom-6 sm:bottom-8 w-full flex justify-center gap-3 z-30">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            aria-label={`Go to slide ${index + 1}`}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === current
-                ? "bg-[#7DB44B] scale-125 shadow-md"
+                ? "bg-[#7DB44B] scale-125 ring-2 ring-white/30"
                 : "bg-white/50 hover:bg-white/80"
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

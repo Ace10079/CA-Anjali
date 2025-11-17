@@ -16,42 +16,42 @@ export default function NBFCService() {
       title: "Mortgage / Loan Against Property",
       desc:
         "Raise funds by mortgaging existing property — ideal for business expansion, working capital, or debt consolidation.",
-      img: "/products/mortgage.jpg",
+      img: "/B1.JPG",
     },
     {
       id: "home",
       title: "Home Loan",
       desc:
         "Flexible home loan options with competitive rates to help clients fulfill their dream of owning a home.",
-      img: "/products/home-loan.jpg",
+      img: "/B2.JPG",
     },
     {
       id: "personal",
       title: "Personal Loan",
       desc:
         "Unsecured credit to meet immediate needs—marriage, travel, home refurbishing, education, and more.",
-      img: "/products/personal-loan.jpg",
+      img: "/B3.JPG",
     },
     {
       id: "business",
       title: "Business Loan",
       desc:
         "Term loans and working capital facilities for startups and established businesses to grow operations.",
-      img: "/products/business-loan.jpg",
+      img: "/B4.JPG",
     },
     {
       id: "term",
       title: "Term Loan",
       desc:
         "Short / intermediate / long-term financing options structured to match repayment capacity and growth plans.",
-      img: "/products/term-loan.jpg",
+      img: "/B5.JPG",
     },
     {
       id: "subsidy",
       title: "Government Subsidy Loans",
       desc:
         "Assistance in obtaining government-backed subsidy schemes and preparing eligibility documentation.",
-      img: "/products/subsidy.jpg",
+      img: "/B6.JPG",
     },
   ];
 
@@ -140,12 +140,7 @@ export default function NBFCService() {
                 <h3 className="text-lg font-semibold text-[#7DB44B]">{p.title}</h3>
                 <p className="text-gray-600 mt-2 text-sm">{p.desc}</p>
                 <div className="mt-4 flex justify-between items-center">
-                  <a
-                    href={`/services/${p.id}`}
-                    className="text-sm px-4 py-2 rounded-md bg-[#7DB44B] text-white hover:bg-[#6ea93d] transition"
-                  >
-                    Learn More
-                  </a>
+                
                   <a
                     href="/contact"
                     className="text-sm px-4 py-2 rounded-md border border-gray-200 hover:bg-gray-50 transition"

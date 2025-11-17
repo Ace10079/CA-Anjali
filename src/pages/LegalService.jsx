@@ -11,14 +11,14 @@ export default function LegalService() {
   });
 
   const legalAreas = [
-    { title: "Property Litigations", img: "/legal/property-litigation.jpg" },
-    { title: "Criminal Litigations", img: "/legal/criminal-litigation.jpg" },
-    { title: "Company Litigation", img: "/legal/company-litigation.jpg" },
-    { title: "Information Technology Laws", img: "/legal/it-law.jpg" },
-    { title: "Money Recovery Litigation", img: "/legal/money-recovery.jpg" },
-    { title: "Registration Of Documents", img: "/legal/document-registration.jpg" },
-    { title: "Real Estate & Property Transfer", img: "/legal/real-estate.jpg" },
-    { title: "Intellectual Property Rights (IPR)", img: "/legal/ipr.jpg" },
+    { title: "Property Litigations", img: "/L1.JPG" },
+    { title: "Criminal Litigations", img: "/L2.JPG" },
+    { title: "Company Litigation", img: "/L3.JPG" },
+    { title: "Information Technology Laws", img: "/L4.JPG" },
+    { title: "Money Recovery Litigation", img: "/L5.JPG" },
+    { title: "Registration Of Documents", img: "/L6.JPG" },
+    { title: "Real Estate & Property Transfer", img: "/L7.JPG" },
+    { title: "Intellectual Property Rights (IPR)", img: "/L8.JPG" },
   ];
 
   return (
