@@ -16,14 +16,14 @@ export default function NBFCService() {
       title: "Mortgage / Loan Against Property",
       desc:
         "Raise funds by mortgaging existing property — ideal for business expansion, working capital, or debt consolidation.",
-      img: "/B1.JPG",
+      img: "/mortgage.JPG",
     },
     {
       id: "home",
       title: "Home Loan",
       desc:
         "Flexible home loan options with competitive rates to help clients fulfill their dream of owning a home.",
-      img: "/B2.JPG",
+      img: "/home.JPG",
     },
     {
       id: "personal",
@@ -37,21 +37,21 @@ export default function NBFCService() {
       title: "Business Loan",
       desc:
         "Term loans and working capital facilities for startups and established businesses to grow operations.",
-      img: "/B4.JPG",
+      img: "/business.JPG",
     },
     {
       id: "term",
       title: "Term Loan",
       desc:
         "Short / intermediate / long-term financing options structured to match repayment capacity and growth plans.",
-      img: "/B5.JPG",
+      img: "/term.JPG",
     },
     {
       id: "subsidy",
       title: "Government Subsidy Loans",
       desc:
         "Assistance in obtaining government-backed subsidy schemes and preparing eligibility documentation.",
-      img: "/B6.JPG",
+      img: "/government.JPG",
     },
   ];
 
